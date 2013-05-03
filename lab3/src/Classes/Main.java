@@ -2,22 +2,25 @@ package Classes;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Main {
-	
+
 	public static void main(String[] args) throws IOException {
-		String dir = "/home/annynha/Teste";
+		Scanner leitor = new Scanner(System.in);
+		String nomeDiretorio;
+		Diretorio diretorio = new Diretorio();
+		File file;
+		Arquivo arq = new Arquivo();
 		
-		Arquivo arquivo = new Arquivo();
-		
-		File diretorio = new File(dir);
+		System.out.println("Digite o caminho do diretorio: ");
+		nomeDiretorio = leitor.next();
 
-		File fList[] = diretorio.listFiles();
+		diretorio.testaSeEhDiretorio(nomeDiretorio);
+		file = diretorio.listaDiretorios(nomeDiretorio);
+		arq.abreLerArquivoSom(file);
 		
-		for (File file : fList) {
-			System.out.println(Arquivo.abreLerArquivoSom(file));
 
-		}
 	}
 
 }

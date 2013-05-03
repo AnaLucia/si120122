@@ -1,14 +1,20 @@
 package Classes;
 
 import java.io.File;
-import java.io.IOException;
 
-public class Diretorio {
+public class Diretorio extends Thread{
+
+	static String dir = "/home/annynha/Teste";
+	static File diretorio = new File(dir);
+
+	static File fList[] = diretorio.listFiles();
+	
+	@Override
+	public void run(){
+		this.listaDiretorios(dir);
+	}
 
 	public void testaSeEhDiretorio(String dir) {
-
-		File diretorio = new File(dir);
-		File fList[] = diretorio.listFiles();
 
 		if (diretorio.isDirectory()) {
 			System.out.print("Numero de arquivos no diretorio : "
@@ -16,41 +22,13 @@ public class Diretorio {
 		}
 	}
 
-	public void listaDiretorios(String dir) {
-
-		File diretorio = new File(dir);
-		File fList[] = diretorio.listFiles();
-
+	public File listaDiretorios(String dir) {
+		File saida = null;
 		for (File file : fList) {
-			System.out.println(file.getName() + "\n");
-
+			saida = file;
 		}
+		return saida;
 
-	}
-
-	public void lerArquivo(String dir) throws IOException {
-		File diretorio = new File(dir);
-
-		File fList[] = diretorio.listFiles();
-
-		for (File file : fList) {
-
-			System.out.println(Arquivo.abreLerArquivoSom(file));
-
-		}
-
-	}
-	
-	
-
-	public static void main(String[] args) throws IOException {
-		Diretorio arq = new Diretorio();
-		String dir = "/home/annynha/Teste";
-
-		arq.testaSeEhDiretorio(dir);
-		arq.listaDiretorios(dir);
-
-		arq.lerArquivo(dir);
 	}
 
 }
